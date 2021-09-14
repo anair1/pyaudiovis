@@ -15,21 +15,21 @@ sample_rate = 44100  # Samples/s 44100 KHz
 
 fig, ax = plt.subplots()
 
+p = pyaudio.PyAudio()  # PyAudio object
+
+# Stream object outlines parameters for processing audio through input
+audio_stream = p.open(
+    format=audio_format,
+    channels=num_channels,
+    rate=sample_rate,
+    input=True,
+    output=True,
+    frames_per_buffer=audio_chunk
+)
+
 
 # Animate function for real-time updating waveform plot
 def animate(i):
-    p = pyaudio.PyAudio()  # PyAudio object
-
-    # Stream object outlines parameters for processing audio through input
-    strm = p.open(
-        format=audio_format,
-        channels=num_channels,
-        rate=sample_rate,
-        input=True,
-        output=True,
-        frames_per_buffer=audio_chunk
-    )
-
     # Plot customizations
     plt.title('Waveform Visualizer')
     x = np.arange(0, 2 * audio_chunk, 2)
@@ -39,7 +39,7 @@ def animate(i):
 
     while True:
         # Read audio data from audio_chunk and store in data variable until input overflow
-        data = strm.read(audio_chunk, exception_on_overflow=False)
+        data = audio_stream.read(audio_chunk, exception_on_overflow=False)
         # Store struct values in np array so plotted values do not cut off at 0
         data_int = np.array(struct.unpack(str(2 * audio_chunk) + 'B', data), dtype='b')[::2] + 128
         line.set_ydata(data_int)
