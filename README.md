@@ -1,6 +1,6 @@
 # pyaudiovis
 
-Learned the basics of using PyAudio and MatPlotLib while creating a simple real-time Waveform Visualizer. I worked on this project to understand the basics of data processing and visualization. Some of the sources used to gather information and recreate this project myself have been listed at the bottom of this file.
+Learned the basics of Python Audio Processing using PyAudio and MatPlotLib while creating a simple real-time Waveform Visualizer. Worked on this project to understand data processing and visualization. Some of the sources used to gather information and recreate this project myself have been listed at the bottom of this file.
 
 Below is a demo (without audio) demonstrating the functionality of pyaudiovis in response to some dummy audio (finger snaps)
 
